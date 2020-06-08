@@ -1,5 +1,5 @@
 # Attentive WaveBlock (AWB)
-The official implementation for the [**Attentive WaveBlock: Complementarity-enhanced Mutual Networks for Unsupervised Domain Adaptation in Person Re-identification**](<wait.for.update>). Many thanks for the framework offered by [**MMT**](https://github.com/yxgeee/MMT).
+The official implementation for the [**Attentive WaveBlock: Complementarity-enhanced Mutual Networks for Unsupervised Domain Adaptation in Person Re-identification**]. Many thanks for the framework offered by [**MMT**](https://github.com/yxgeee/MMT).
 
 ![image](https://github.com/WangWenhao0716/Attentive-WaveBlock/blob/master/feature_map.png)
 
