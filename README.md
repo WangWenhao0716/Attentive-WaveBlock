@@ -58,17 +58,15 @@ The pretrained parameters for CBAM module in our Pre-A can be downloaded from [*
 
 3. Our Trained Models
 
-We provide our trained Pre-A and Post-A models on Market-to-Duke, Duke-to-Market, Market-to-MSMT, Duke-to-MSMT domain adaptation tasks.
+We provide our trained Pre-A and Post-A models on Duke-to-Market, Market-to-Duke, Duke-to-MSMT, and Market-to-MSMT domain adaptation tasks.
 
 Duke-to-Market:  [**Pre-A(78.0% mAP)**](https://drive.google.com/open?id=1c9JvTO45ltNlSYHAC99vB4CMmYfqED8V)    [**Post-A(80.6% mAP)**](https://drive.google.com/open?id=1hzgXCNhNQdfFn-_CiEzEVik_X7_W_CVT)
 
 Market-to-Duke:  [**Pre-A(69.1% mAP)**](https://drive.google.com/open?id=1-k9p5MJyL0ToSRownFrDifbXMPNM9aY7)    [**Post-A(71.0% mAP)**](https://drive.google.com/open?id=1MBlafM2nlguXlH3pBMHPuX6gOsMOS6Pz)
 
-Market-to-MSMT:  [**Pre-A(25.5% mAP)**](https://drive.google.com/open?id=1MEKjWdlewpI4PXkRiP5BIfPMD4U9NHJi)    [**Post-A(30.6% mAP)**](https://drive.google.com/open?id=1XsT7X2sTcY6gUFbeTbckiYGjRcDZm4Zh)
-
 Duke-to-MSMT:    [**Pre-A(27.9% mAP)**](https://drive.google.com/open?id=10qtC_KFAVYdVaVpSyRoQ78DFno9FivXB)    [**Post-A(30.7% mAP)**](https://drive.google.com/open?id=1ZMA_2KFAGF7Y74u-bGgJMCSELveT5FzA)
 
-
+Market-to-MSMT:  [**Pre-A(25.5% mAP)**](https://drive.google.com/open?id=1MEKjWdlewpI4PXkRiP5BIfPMD4U9NHJi)    [**Post-A(30.6% mAP)**](https://drive.google.com/open?id=1XsT7X2sTcY6gUFbeTbckiYGjRcDZm4Zh)
 
 
 ## Train
@@ -101,6 +99,7 @@ Second Network:
 `CUDA_VISIBLE_DEVICES=0,1,2,3 python source_pretrain_post_a.py -ds dukemtmc -dt market1501 -a resnet50 --seed 2 --margin 0.0 
     --num-instances 4 -b 64 -j 4 --warmup-step 10 --lr 0.00035 --milestones 40 70 --iters 200 --epochs 80 --eval-step 40 
     --logs-dir logs/dukemtmcTOmarket1501/resnet50-pretrain-2-post-a`
+    
 ### Step 2: Train our attention model on target domain (Stage 1)
 #### Pre-A
 
@@ -129,7 +128,5 @@ We use Duke-to-Market as an example, other UDA tasks will follow similar pipelin
 ### Post-A
 `CUDA_VISIBLE_DEVICES=0 python test_post_a.py -b 256 -j 8 --dataset-target market1501 -a resnet50 --resume logs/dukemtmcTOmarket1501/resnet50-train-post-a-s2/model_best.pth.tar`
 
-## Citation
-If you think our work is useful in your research, please consider citing:
 
 
