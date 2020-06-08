@@ -68,6 +68,9 @@ Duke-to-MSMT:    [**Pre-A(27.9% mAP)**](https://drive.google.com/open?id=10qtC_K
 
 Market-to-MSMT:  [**Pre-A(25.5% mAP)**](https://drive.google.com/open?id=1MEKjWdlewpI4PXkRiP5BIfPMD4U9NHJi)    [**Post-A(30.6% mAP)**](https://drive.google.com/open?id=1XsT7X2sTcY6gUFbeTbckiYGjRcDZm4Zh)
 
+For example, to test our trained model on Duke-to-Market, you should save the models in ```./logs/dukemtmcTOmarket1501/resnet50-train-pre-a-s2``` and ```./logs/dukemtmcTOmarket1501/resnet50-train-post-a-s2```, respectively.
+
+
 
 ## Train
 
