@@ -13,16 +13,16 @@ from torch import nn
 from torch.backends import cudnn
 from torch.utils.data import DataLoader
 
-from mmt import datasets
-from mmt import models_pre_a_s2
-from mmt.trainers import MMTTrainer
-from mmt.evaluators import Evaluator, extract_features
-from mmt.utils.data import IterLoader
-from mmt.utils.data import transforms as T
-from mmt.utils.data.sampler import RandomMultipleGallerySampler
-from mmt.utils.data.preprocessor import Preprocessor
-from mmt.utils.logging import Logger
-from mmt.utils.serialization import load_checkpoint, save_checkpoint, copy_state_dict
+from awb import datasets
+from awb import models_pre_a_s2
+from awb.trainers import MMTTrainer
+from awb.evaluators import Evaluator, extract_features
+from awb.utils.data import IterLoader
+from awb.utils.data import transforms as T
+from awb.utils.data.sampler import RandomMultipleGallerySampler
+from awb.utils.data.preprocessor import Preprocessor
+from awb.utils.logging import Logger
+from awb.utils.serialization import load_checkpoint, save_checkpoint, copy_state_dict
 
 
 start_epoch = best_mAP = 0
@@ -96,74 +96,7 @@ def create_model(args):
     model_2 = nn.DataParallel(model_2)
     model_1_ema = nn.DataParallel(model_1_ema)
     model_2_ema = nn.DataParallel(model_2_ema)
-    '''
-    module_old_1 = torch.load(args.init_1)
-    values = module_old_1['state_dict'].keys()
-    module_old_fix = dict()
-    for i in values:
-        module_old_fix[i[:]] = module_old_1['state_dict'][i]
-    keys_wo_tr = []
-    te = list(module_old_fix.keys())
-    for i in range(len(te)):
-        if(('track' not in te[i]) and te[i] != 'module.classifier.weight'):
-            keys_wo_tr.append(te[i])
-    module_old_fix_1 = dict()
-    for i in range(len(keys_wo_tr)):
-        module_old_fix_1[keys_wo_tr[i]] = module_old_fix[keys_wo_tr[i]]
     
-    module_new = torch.load("./mmt/models_a_rdb/RESNET50_CBAM_new_name_wrap.pth")
-    values = module_new['state_dict'].keys()
-    pre_values = dict()
-    for i in values:
-        pre_values[i[:]] = module_new['state_dict'][i]
-    cbam_keys = []
-    pre_values_key_list = list(pre_values.keys())
-    for i in range(len(pre_values_key_list)):
-        if 'cbam' in pre_values_key_list[i]:
-            cbam_keys.append(pre_values_key_list[i])
-    cbam_dict =dict()
-    for i in range(len(cbam_keys)):
-        cbam_dict[cbam_keys[i]] = pre_values[cbam_keys[i]]
-    total_dict = dict(module_old_fix_1,**cbam_dict)
-    model_1.load_state_dict(total_dict,strict=False)
-    model_1_ema.load_state_dict(total_dict,strict=False)
-    model_1_ema.module.classifier.weight.data.copy_(model_1.module.classifier.weight.data)
-    
-    module_old_2 = torch.load(args.init_2)
-    values = module_old_2['state_dict'].keys()
-    module_old_fix = dict()
-    for i in values:
-        module_old_fix[i[:]] = module_old_2['state_dict'][i]
-    keys_wo_tr = []
-    te = list(module_old_fix.keys())
-    for i in range(len(te)):
-        if(('track' not in te[i]) and te[i] != 'module.classifier.weight'):
-            keys_wo_tr.append(te[i])
-    module_old_fix_2 = dict()
-    for i in range(len(keys_wo_tr)):
-        module_old_fix_2[keys_wo_tr[i]] = module_old_fix[keys_wo_tr[i]]
-    
-    module_new = torch.load("./mmt/models_a_rdb/RESNET50_CBAM_new_name_wrap.pth")
-    values = module_new['state_dict'].keys()
-    pre_values = dict()
-    for i in values:
-        pre_values[i[:]] = module_new['state_dict'][i]
-    cbam_keys = []
-    pre_values_key_list = list(pre_values.keys())
-    for i in range(len(pre_values_key_list)):
-        if 'cbam' in pre_values_key_list[i]:
-            cbam_keys.append(pre_values_key_list[i])
-    cbam_dict =dict()
-    for i in range(len(cbam_keys)):
-        cbam_dict[cbam_keys[i]] = pre_values[cbam_keys[i]]
-    total_dict = dict(module_old_fix_2,**cbam_dict)
-    model_2.load_state_dict(total_dict,strict=False)
-    model_2_ema.load_state_dict(total_dict,strict=False)
-    model_2_ema.module.classifier.weight.data.copy_(model_2.module.classifier.weight.data)
-    
-    
-
-    '''
     initial_weights = load_checkpoint(args.init_1)
     copy_state_dict(initial_weights['state_dict'], model_1)
     copy_state_dict(initial_weights['state_dict'], model_1_ema)
@@ -256,12 +189,10 @@ def main_worker(args):
         for key, value in model_1.named_parameters():
             if not value.requires_grad:
                 continue
-            #if 'cbam' in key:
             params += [{"params": [value], "lr": args.lr, "weight_decay": args.weight_decay}]
         for key, value in model_2.named_parameters():
             if not value.requires_grad:
                 continue
-            #if 'cbam' in key:
             params += [{"params": [value], "lr": args.lr, "weight_decay": args.weight_decay}]
         optimizer = torch.optim.Adam(params)
 

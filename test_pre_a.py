@@ -10,13 +10,13 @@ from torch import nn
 from torch.backends import cudnn
 from torch.utils.data import DataLoader
 
-from mmt import datasets
-from mmt import models_pre_a_s1
-from mmt.evaluators import Evaluator
-from mmt.utils.data import transforms as T
-from mmt.utils.data.preprocessor import Preprocessor
-from mmt.utils.logging import Logger
-from mmt.utils.serialization import load_checkpoint, save_checkpoint, copy_state_dict
+from awb import datasets
+from awb import models_pre_a_s1
+from awb.evaluators import Evaluator
+from awb.utils.data import transforms as T
+from awb.utils.data.preprocessor import Preprocessor
+from awb.utils.logging import Logger
+from awb.utils.serialization import load_checkpoint, save_checkpoint, copy_state_dict
 
 
 def get_data(name, data_dir, height, width, batch_size, workers):

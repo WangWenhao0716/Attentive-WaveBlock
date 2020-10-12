@@ -13,16 +13,16 @@ from torch import nn
 from torch.backends import cudnn
 from torch.utils.data import DataLoader
 
-from mmt import datasets
-from mmt import models_post_a_s1
-from mmt.trainers import MMTTrainer
-from mmt.evaluators import Evaluator, extract_features
-from mmt.utils.data import IterLoader
-from mmt.utils.data import transforms as T
-from mmt.utils.data.sampler import RandomMultipleGallerySampler
-from mmt.utils.data.preprocessor import Preprocessor
-from mmt.utils.logging import Logger
-from mmt.utils.serialization import load_checkpoint, save_checkpoint, copy_state_dict
+from awb import datasets
+from awb import models_post_a_s1
+from awb.trainers import MMTTrainer
+from awb.evaluators import Evaluator, extract_features
+from awb.utils.data import IterLoader
+from awb.utils.data import transforms as T
+from awb.utils.data.sampler import RandomMultipleGallerySampler
+from awb.utils.data.preprocessor import Preprocessor
+from awb.utils.logging import Logger
+from awb.utils.serialization import load_checkpoint, save_checkpoint, copy_state_dict
 
 
 best_mAP = 0
