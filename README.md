@@ -121,5 +121,14 @@ We use Duke-to-Market as an example, other UDA tasks will follow similar pipelin
 ### Post-A
 `CUDA_VISIBLE_DEVICES=0 python test_post_a.py -b 256 -j 8 --dataset-target market1501 -a resnet50 --resume logs/dukemtmcTOmarket1501/resnet50-train-post-a-s2/model_best.pth.tar`
 
-
+## Citation
+If you think our work is useful in your research, please consider citing:
+```
+@article{wang2020attentive,
+  title={Attentive WaveBlock: Complementarity-enhanced Mutual Networks for Unsupervised Domain Adaptation in Person Re-identification},
+  author={Wang, Wenhao and Zhao, Fang and Liao, Shengcai and Shao, Ling},
+  journal={arXiv preprint arXiv:2006.06525},
+  year={2020}
+}
+```
 
