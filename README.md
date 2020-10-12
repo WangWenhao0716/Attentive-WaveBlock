@@ -15,8 +15,8 @@ The official implementation for the "Attentive WaveBlock: Complementarity-enhanc
 * Torchvision 0.2.0
 
 ## Reproduction Environment
-* Test our models: 1 GTX 1080Ti/V100 GPU.
-* Train new models: 4 GTX 1080Ti/V100 GPUs.
+* Test our models: 1 GTX 1080Ti GPU.
+* Train new models: 4 GTX 1080Ti GPUs.
 
 ## Installation
 You can directly get the codes by:
