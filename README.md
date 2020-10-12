@@ -54,7 +54,7 @@ We evaluate our algorithm on [**DukeMTMC-reID**](https://arxiv.org/abs/1609.0177
 
 2. Pretrained Models
 
-We use Resnet-50 as backbone, and the pretrained models will be downloaded automatically.
+We use ResNet-50 as backbone, and the pretrained models will be downloaded automatically.
 
 3. Our Trained Models
 
@@ -93,7 +93,7 @@ Second Network:
     --num-instances 4 -b 64 -j 4 --warmup-step 10 --lr 0.00035 --milestones 40 70 --iters 200 --epochs 80 --eval-step 40 
     --logs-dir logs/dukemtmcTOmarket1501/resnet50-pretrain-2`
     
-## Step 2: Train our attention model on target domain (Stage 1)
+### Step 2: Train our attention model on target domain (Stage 1)
 #### Pre-A
 
 `CUDA_VISIBLE_DEVICES=0,1,2,3 python train_pre_a_s1.py -dt market1501 -a resnet50 --num-clusters 500 --num-instances 4 --lr 0.00035 --iters 800 -b 64 --epochs 10 --soft-ce-weight 0.5 --soft-tri-weight 0.8 --dropout 0 --init-1 logs/dukemtmcTOmarket1501/resnet50-pretrain-1/model_best.pth.tar --init-2 logs/dukemtmcTOmarket1501/resnet50-pretrain-2/model_best.pth.tar --logs-dir logs/dukemtmcTOmarket1501/resnet50-train-pre-a-s1`
