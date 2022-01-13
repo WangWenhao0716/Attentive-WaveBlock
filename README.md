@@ -1,4 +1,4 @@
-# [TIP 2021] Attentive WaveBlock (AWB)
+# [TIP 2022] Attentive WaveBlock (AWB)
 The official implementation for the "Attentive WaveBlock: Complementarity-enhanced Mutual Networks for Unsupervised Domain Adaptation in Person Re-identification and Beyond". Many thanks for the framework offered by [**MMT**](https://github.com/yxgeee/MMT).
 
 ![image](https://github.com/WangWenhao0716/Attentive-WaveBlock/blob/master/feature_map.png)
