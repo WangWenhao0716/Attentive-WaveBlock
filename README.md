@@ -124,14 +124,12 @@ We use Duke-to-Market as an example, other UDA tasks follow similar pipelines.
 ## Citation
 If you think our work is useful in your research, please consider citing:
 ```
-@ARTICLE{9677903,
+@article{wang2022attentive,
+  title={Attentive WaveBlock: Complementarity-enhanced Mutual Networks for Unsupervised Domain Adaptation in Person Re-identification and Beyond},
   author={Wang, Wenhao and Zhao, Fang and Liao, Shengcai and Shao, Ling},
-  journal={IEEE Transactions on Image Processing}, 
-  title={Attentive WaveBlock: Complementarity-Enhanced Mutual Networks for Unsupervised Domain Adaptation in Person Re-Identification and Beyond}, 
+  journal={IEEE Transactions on Image Processing},
   year={2022},
-  volume={31},
-  number={},
-  pages={1532-1544},
-  doi={10.1109/TIP.2022.3140614}}
+  publisher={IEEE}
+}
 ```
 
